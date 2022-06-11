@@ -1,4 +1,4 @@
 # LEETCODE-SOLUTIONS-CPP
 
-This contains solutions to variety of leetcode competitive problems.
+This contains my solutions to variety of leetcode competitive problems.
 
