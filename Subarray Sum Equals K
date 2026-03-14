@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+     int n=nums.size();
+     unordered_map<int,vector<int>> prefixSumToIndex;
+     int sum =0;
+     for(int i=0;i<n;i++){
+        sum=sum +nums[i];
+        if(prefixSumToIndex.find(sum)!=prefixSumToIndex.end()){
+            prefixSumToIndex[sum].push_back(i);
+        } else{
+            vector<int> vec = {i};
+            prefixSumToIndex[sum] = vec;
+        }
+     }
+        int cnt=0;
+        int sumf=0;
+     for(int i=0;i<n;i++){
+        sumf=sumf+nums[i];
+        if(sumf==k){
+            cnt++;
+        }
+        int diff = sumf -k;   
+        if(prefixSumToIndex.find(diff) != prefixSumToIndex.end()){
+            vector<int> vec = prefixSumToIndex[diff];
+            for(int j=0;j<vec.size();j++){
+                if(vec[j]<i){
+                    cnt++;
+
+                } else{
+                    break;
+                }
+            }
+        }
+
+     }
+     return cnt;
+    }
+};
